@@ -2,6 +2,6 @@
 export default defineNuxtConfig({
     css: ["bootstrap/dist/css/bootstrap.min.css", "assets/css/main.sass"],
     app: {
-        baseURL: "/dist"
+        baseURL: "/vadfanskajagspela.nu"
     },
 })
