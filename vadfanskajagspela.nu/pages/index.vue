@@ -2,13 +2,11 @@
     <div id="container">
         <div class="row p-3" style="height:100vh; width: 100vw;">
             <div id="overlay"></div>
-            <div class="col-12 d-flex justify-content-center align-items-center ">
-                <div ref="container__interface" id="container__interface" class="text-center align-items-center w-75">
+            <div class="col-12 d-flex justify-content-center align-items-center">
+                <div ref="container__interface" id="container__interface" class="text-center align-items-center w-100">
                     <div ref="container__interface__game-title" id="container__interface__game-title">
-                        <span id="container__interface__game-title--image"><img :src=game_image></span>
-                        <br>
-                        <span id="container__interface__game-title--normal">Du kan väl för fan spela lite </span>
-                        <br>
+                        <div id="container__interface__game-title--image"><img :src=game_image></div>
+                        <div id="container__interface__game-title--normal">Du kan väl för fan spela lite </div>
                         <a :href=game_link id="container__interface__game-title--generated">{{ game_title }}</a>
                     </div>
                     <br>
@@ -59,30 +57,32 @@ export default {
 </script>
 
 <style scoped lang="sass">
-$red: #DC3131
-
-@media screen and (max-width: 500px)
+$red: #DC3131 
+@media screen and (max-width: 1300px) and (min-height: 400px)
     #container__interface__game-title 
-        font-size: 8vw !important
+        font-size: 2.2rem !important
 
-    #container__interface__game-title--image
-            width: 50vw !important
-            height: 50vw !important
-
-@media screen and (max-height: 650px)
+@media screen and (max-width: 700px), (max-height: 500px)
     #container__interface__game-title 
-        font-size: 4vw !important
+        font-size: 2.2rem !important
 
-    #container__interface__game-title--image
-        width: 15vw !important
-        height: 15vw !important     
+        #container__interface__game-title--image
+            display: none
+
+@media screen and (max-height: 700px) 
+    #container__interface__game-title 
+        font-size: 2.2rem !important
+
+        #container__interface__game-title--image
+            width: 30vw !important
+            height: 30vw !important
 
 #container__interface
     opacity: 0
 
     #container__interface__game-title
         font-weight: bold
-        font-size: 3.0rem
+        font-size: 3rem
 
         #container__interface__game-title--generated
             color: $red
@@ -98,10 +98,11 @@ $red: #DC3131
             height: 300px
             border-radius: 50%
             background: #fff
-            display: inline-block
             margin: 0 auto
             overflow: hidden
             border: 2px solid #fff
+            max-width: 300px
+            max-height: 300px
 
             img
                 width: 100%
