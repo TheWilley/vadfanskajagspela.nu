@@ -1,9 +1,9 @@
 <template>
-    <div id="overlay"></div>
-    <div id="container" class="p-3">
-        <div class="row" style="height:100vh;">
+    <div id="container">
+        <div class="row p-3" style="height:100vh; width: 100vw;">
+            <div id="overlay"></div>
             <div class="col-12 d-flex justify-content-center align-items-center ">
-                <div ref="container__interface" id="container__interface" class="text-center align-items-center w-50">
+                <div ref="container__interface" id="container__interface" class="text-center align-items-center w-75">
                     <div ref="container__interface__game-title" id="container__interface__game-title">
                         <span id="container__interface__game-title--image"><img :src=game_image></span>
                         <br>
@@ -12,7 +12,8 @@
                         <a :href=game_link id="container__interface__game-title--generated">{{ game_title }}</a>
                     </div>
                     <br>
-                    <button v-on:click="refresh()" ref="container__interface__button" id="container__interface__button">Ge mig något annat!
+                    <button v-on:click="refresh()" ref="container__interface__button" id="container__interface__button">Ge
+                        mig något annat!
                         <span>
                             <img id="container__interface__button__refresh" src="../assets/images/refresh-icon.svg">
                         </span>
@@ -59,6 +60,22 @@ export default {
 
 <style scoped lang="sass">
 $red: #DC3131
+
+@media screen and (max-width: 500px)
+    #container__interface__game-title 
+        font-size: 8vw !important
+
+    #container__interface__game-title--image
+            width: 50vw !important
+            height: 50vw !important
+
+@media screen and (max-height: 650px)
+    #container__interface__game-title 
+        font-size: 4vw !important
+
+    #container__interface__game-title--image
+        width: 15vw !important
+        height: 15vw !important     
 
 #container__interface
     opacity: 0
