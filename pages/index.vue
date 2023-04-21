@@ -22,7 +22,7 @@
             </div>
         </div>
         <footer id="footer">
-            <p class="text-center"> Skapat av <a href="https://github.com/TheWilley" class="text-info">TheWilley</a> - Hårt inspererat av <a href="https://vadfanskajaglagatillmiddag.nu" class="text-info">vadfanskajaglagatillmiddag.nu</a> </p>
+            <p class="text-center"> Skapat av <a href="https://github.com/TheWilley/vadfanskajagspela.nu" class="text-info">TheWilley</a> - Hårt inspererat av <a href="https://vadfanskajaglagatillmiddag.nu" class="text-info">vadfanskajaglagatillmiddag.nu</a> </p>
         </footer>
     </div>
 </template>
