@@ -3,6 +3,9 @@
         <div class="row p-3" style="height:100vh; width: 100vw;">
             <div id="overlay"></div>
             <div class="col-12 d-flex justify-content-center align-items-center">
+                <div id="container__loading" ref="container__loading" class="text-center align-items-center w-100">
+                    <img src="../assets/images/loading.gif">
+                </div>
                 <div ref="container__interface" id="container__interface" class="text-center align-items-center w-100">
                     <div ref="container__interface__game-title" id="container__interface__game-title">
                         <div id="container__interface__game-title--image"><img :src=game_image></div>
@@ -10,8 +13,7 @@
                         <a :href=game_link id="container__interface__game-title--generated">{{ game_title }}</a>
                     </div>
                     <br>
-                    <button v-on:click="refresh()" ref="container__interface__button" id="container__interface__button">Ge
-                        mig något annat!
+                    <button v-on:click="refresh()" ref="container__interface__button" id="container__interface__button">Jag vill spela något annat för fan!
                         <span>
                             <img id="container__interface__button__refresh" src="../assets/images/refresh-icon.svg">
                         </span>
@@ -19,6 +21,9 @@
                 </div>
             </div>
         </div>
+        <footer id="footer">
+            <p class="text-center"> Skapat av <a href="https://github.com/TheWilley" class="text-info">TheWilley</a> - Hårt inspererat av <a href="https://vadfanskajaglagatillmiddag.nu" class="text-info">vadfanskajaglagatillmiddag.nu</a> </p>
+        </footer>
     </div>
 </template>
 
@@ -45,6 +50,7 @@ export default {
             this.game_image = response.image;
             (this.$refs['container__interface'] as HTMLElement).classList.add('show-interface');
             (this.$refs['container__interface__button'] as HTMLElement).classList.add('show-button');
+            (this.$refs['container__loading'] as HTMLElement).classList.add('hide-loading');
         }
     },
 
@@ -77,6 +83,22 @@ $red: #DC3131
             width: 30vw !important
             height: 30vw !important
 
+#container__loading
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    z-index: 1
+    display: flex
+    justify-content: center
+    align-items: center
+    filter: blur(2px)
+
+    img
+        width: 100px
+        height: 100px
+    
 #container__interface
     opacity: 0
 
@@ -136,6 +158,21 @@ $red: #DC3131
             width: 1.5rem
             margin-left: 0.5rem
 
+#footer
+    position: fixed
+    bottom: 8px
+    left: 0
+    width: 100%
+    height: 20px
+    display: flex
+    justify-content: center
+    align-items: center
+    
+.hide-loading
+    animation: hide-loading 0.5s
+    animation-timing-function: ease-out
+    animation-fill-mode: forwards
+
 .show-button
     animation: expand 0.5s
     animation-timing-function: ease-out
@@ -161,5 +198,14 @@ $red: #DC3131
   
   100% 
     transform: scale(1)
+
+@keyframes hide-loading
+    0% 
+        opacity: 1
+        transform: scale(1)
+    
+    100% 
+        opacity: 0
+        transform: scale(0)
 </style>
   
