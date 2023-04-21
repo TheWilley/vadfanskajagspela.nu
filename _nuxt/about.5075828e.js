@@ -1,1 +1,0 @@
-import{a as o,b as s,o as c,e}from"./entry.02f7125d.js";const t={},a={class:"row"},n=e("div",{class:"col-md-12"},[e("h1",null,"Hej")],-1),_=[n];function r(d,l){return c(),s("div",a,_)}const f=o(t,[["render",r]]);export{f as default};
