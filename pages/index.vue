@@ -73,7 +73,7 @@ export default {
                     (this.$refs.container as HTMLElement).style.marginTop = '0px';
                 }
                 else if (e.deltaY > 0) {
-                    (this.$refs.container as HTMLElement).style.marginTop = '-50px';
+                    (this.$refs.container as HTMLElement).style.marginTop = 'calc(-80px - 3vh)';
 
                 }
             });
@@ -90,7 +90,7 @@ export default {
             window.addEventListener('touchend', e => {
                 touchendY = e.changedTouches[0].screenY
                 if (touchendY < touchstartY) {
-                    (this.$refs.container as HTMLElement).style.marginTop = '-80px';
+                    (this.$refs.container as HTMLElement).style.marginTop = 'calc(-80px - 3vh)';
                 }
                 if (touchendY > touchstartY) {
                     (this.$refs.container as HTMLElement).style.marginTop = '0px';
@@ -124,7 +124,7 @@ $red: #DC3131
 
 #container
     transition: 0.2s cubic-bezier(0.25,0.80,1,1)
-    margin-top: -80px
+    margin-top: calc(-80px - 3vh)
 
 #container__loading
     position: absolute
