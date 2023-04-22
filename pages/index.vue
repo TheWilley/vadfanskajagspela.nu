@@ -70,10 +70,10 @@ export default {
         handleScroll() {
             window.addEventListener("wheel", (e: WheelEvent) => {
                 if (e.deltaY < 0) {
-                    (this.$refs.container as HTMLElement).style.marginTop = '0px';
+                    (this.$refs.header as HTMLElement).style.marginTop = '0px';
                 }
                 else if (e.deltaY > 0) {
-                    (this.$refs.container as HTMLElement).style.marginTop = 'calc(-80px - 3vh)';
+                    (this.$refs.header as HTMLElement).style.marginTop = '-80px';
 
                 }
             });
@@ -90,10 +90,10 @@ export default {
             window.addEventListener('touchend', e => {
                 touchendY = e.changedTouches[0].screenY
                 if (touchendY < touchstartY) {
-                    (this.$refs.container as HTMLElement).style.marginTop = 'calc(-80px - 3vh)';
+                    (this.$refs.header as HTMLElement).style.marginTop = '-80px';
                 }
                 if (touchendY > touchstartY) {
-                    (this.$refs.container as HTMLElement).style.marginTop = '0px';
+                    (this.$refs.header as HTMLElement).style.marginTop = '0px';
                 }
             })
         }
@@ -124,7 +124,6 @@ $red: #DC3131
 
 #container
     transition: 0.2s cubic-bezier(0.25,0.80,1,1)
-    margin-top: calc(-80px - 3vh)
 
 #container__loading
     position: absolute
@@ -201,12 +200,15 @@ $red: #DC3131
             width: 1.5rem
             margin-left: 0.5rem
 
-#footer
+#header
     width: 100%
     height: 50px
-    position: relative
+    position: fixed
+    top: 0
     background: black
     margin: 0
+    transition: 0.2s cubic-bezier(0.25,0.80,1,1)
+    margin-top: -80px
     
 .hide-loading
     animation: hide-loading 0.5s
