@@ -1,5 +1,5 @@
 <template>
-    <div id="container">
+    <div ref="container" id="container">
         <div class="row p-3" style="height:100vh; width: 100vw; margin: 0 auto">
             <div id="overlay"></div>
             <div class="col-12 d-flex justify-content-center align-items-center">
@@ -13,7 +13,8 @@
                         <a :href=game_link id="container__interface__game-title--generated">{{ game_title }}</a>
                     </div>
                     <br>
-                    <button v-on:click="refresh()" ref="container__interface__button" id="container__interface__button">Jag vill spela något annat för fan!
+                    <button v-on:click="refresh()" ref="container__interface__button" id="container__interface__button">Jag
+                        vill spela något annat för fan!
                         <span>
                             <img id="container__interface__button__refresh" src="../assets/images/refresh-icon.svg">
                         </span>
@@ -21,8 +22,10 @@
                 </div>
             </div>
         </div>
-        <footer id="footer">
-            <p class="text-center"> Skapat med ❤️ av <a href="https://github.com/TheWilley/vadfanskajagspela.nu" class="text-info">TheWilley</a> - Inspererat av <a href="https://vadfanskajaglagatillmiddag.nu" class="text-info">vadfanskajaglagatillmiddag.nu</a> </p>
+        <footer id="footer" ref="footer">
+            <p class="text-center"> Skapat med ❤️ av <a href="https://github.com/TheWilley/vadfanskajagspela.nu"
+                    class="text-info">TheWilley</a> - Inspererat av <a href="https://vadfanskajaglagatillmiddag.nu"
+                    class="text-info">vadfanskajaglagatillmiddag.nu</a> </p>
         </footer>
     </div>
 </template>
@@ -39,6 +42,9 @@ export default {
         }
     },
     async mounted() {
+        window.addEventListener("wheel", this.handleScroll);
+        window.addEventListener("touchmove", this.handleScroll);
+
         const randomId = Math.floor(Math.random() * games.length);
         const response = games[randomId];
         this.game_title = response.name;
@@ -57,6 +63,28 @@ export default {
     methods: {
         refresh() {
             location.reload();
+        },
+        handleScroll(e: WheelEvent | TouchEvent) {
+            e.preventDefault();
+
+            if (e instanceof WheelEvent) {
+                if (e.deltaY < 0) {
+                    (this.$refs.container as HTMLElement).style.marginTop = '0px';
+                }
+                else if (e.deltaY > 0) {
+                    (this.$refs.container as HTMLElement).style.marginTop = '-50px';
+
+                }
+            } else if (e instanceof TouchEvent) {
+                if (e.touches[0].clientY < 0) {
+                    (this.$refs.container as HTMLElement).style.marginTop = '-50px';
+                    console.log('up');
+                }
+                else if (e.touches[0].clientY > 0) {
+                    (this.$refs.container as HTMLElement).style.marginTop = '0px';
+                    console.log('down');
+                }
+            }
         }
     }
 }
@@ -84,7 +112,7 @@ $red: #DC3131
             height: 30vw !important
 
 #container
-    margin-top: -25px
+    transition: 0.2s cubic-bezier(0.25,0.80,1,1)
 
 #container__loading
     position: absolute
@@ -163,7 +191,10 @@ $red: #DC3131
 
 #footer
     width: 100%
-    height: 30px
+    height: 50px
+    position: relative
+    background: black
+    margin: 0
     
 .hide-loading
     animation: hide-loading 0.5s
