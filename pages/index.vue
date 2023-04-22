@@ -1,8 +1,14 @@
 <template>
     <div ref="container" id="container">
-        <div class="row p-3" style="height:100vh; width: 100vw; margin: 0 auto">
+        <header id="header" ref="header">
+            <p class="text-center"> Skapat med ❤️ av <a href="https://github.com/TheWilley/vadfanskajagspela.nu"
+                    class="text-info">TheWilley</a> - Inspererat av <a href="https://vadfanskajaglagatillmiddag.nu"
+                    class="text-info">vadfanskajaglagatillmiddag.nu</a>
+            </p>
+        </header>
+        <div class="row p-3 d-flex justify-content-center align-items-center" style="height:100vh; width: 100vw; margin: 0 auto">
             <div id="overlay"></div>
-            <div class="col-12 d-flex justify-content-center align-items-center">
+            <div class="col-12">
                 <div id="container__loading" ref="container__loading" class="text-center">
                     <img src="../assets/images/loading.gif">
                 </div>
@@ -22,11 +28,6 @@
                 </div>
             </div>
         </div>
-        <footer id="footer" ref="footer">
-            <p class="text-center"> Skapat med ❤️ av <a href="https://github.com/TheWilley/vadfanskajagspela.nu"
-                    class="text-info">TheWilley</a> - Inspererat av <a href="https://vadfanskajaglagatillmiddag.nu"
-                    class="text-info">vadfanskajaglagatillmiddag.nu</a> </p>
-        </footer>
     </div>
 </template>
 
@@ -73,7 +74,7 @@ export default {
                 }
                 else if (e.deltaY > 0) {
                     (this.$refs.container as HTMLElement).style.marginTop = '-50px';
-    
+
                 }
             });
 
@@ -89,7 +90,7 @@ export default {
             window.addEventListener('touchend', e => {
                 touchendY = e.changedTouches[0].screenY
                 if (touchendY < touchstartY) {
-                    (this.$refs.container as HTMLElement).style.marginTop = '-50px';
+                    (this.$refs.container as HTMLElement).style.marginTop = '-80px';
                 }
                 if (touchendY > touchstartY) {
                     (this.$refs.container as HTMLElement).style.marginTop = '0px';
@@ -123,6 +124,7 @@ $red: #DC3131
 
 #container
     transition: 0.2s cubic-bezier(0.25,0.80,1,1)
+    margin-top: -80px
 
 #container__loading
     position: absolute
