@@ -16,6 +16,7 @@
     "sass": "^1.62.0"
   },
   "dependencies": {
-    "bootstrap-vue": "^2.23.1"
+    "bootstrap-vue": "^2.23.1",
+    "nuxt-cname-module": "^1.1.1"
   }
 }
