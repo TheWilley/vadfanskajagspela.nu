@@ -1,6 +1,6 @@
 <template>
     <div id="container">
-        <div class="row p-3" style="height:100vh; width: 100vw; margin: 0 auto;">
+        <div class="row p-3" style="height:100vh; width: 100vw; margin: 0 auto">
             <div id="overlay"></div>
             <div class="col-12 d-flex justify-content-center align-items-center">
                 <div id="container__loading" ref="container__loading" class="text-center align-items-center w-100">
