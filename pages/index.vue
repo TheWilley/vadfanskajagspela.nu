@@ -3,10 +3,10 @@
         <div class="row p-3" style="height:100vh; width: 100vw; margin: 0 auto">
             <div id="overlay"></div>
             <div class="col-12 d-flex justify-content-center align-items-center">
-                <div id="container__loading" ref="container__loading" class="text-center align-items-center w-100">
+                <div id="container__loading" ref="container__loading" class="text-center">
                     <img src="../assets/images/loading.gif">
                 </div>
-                <div ref="container__interface" id="container__interface" class="text-center align-items-center w-100">
+                <div ref="container__interface" id="container__interface" class="text-center">
                     <div ref="container__interface__game-title" id="container__interface__game-title">
                         <div id="container__interface__game-title--image"><img :src=game_image></div>
                         <div id="container__interface__game-title--normal">Du kan väl för fan spela lite </div>
@@ -82,6 +82,9 @@ $red: #DC3131
         #container__interface__game-title--image
             width: 30vw !important
             height: 30vw !important
+
+#container
+    margin-top: -25px
 
 #container__loading
     position: absolute
@@ -159,14 +162,8 @@ $red: #DC3131
             margin-left: 0.5rem
 
 #footer
-    position: fixed
-    bottom: 8px
-    left: 0
     width: 100%
-    height: 20px
-    display: flex
-    justify-content: center
-    align-items: center
+    height: 30px
     
 .hide-loading
     animation: hide-loading 0.5s
