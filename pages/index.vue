@@ -42,9 +42,11 @@ export default {
         }
     },
     async mounted() {
-        window.addEventListener("wheel", this.handleScroll);
-        window.addEventListener("touchmove", this.handleScroll);
+        // Handle scroll and swipe
+        this.handleScroll()
+        this.handleSwipe()
 
+        // Get random game
         const randomId = Math.floor(Math.random() * games.length);
         const response = games[randomId];
         this.game_title = response.name;
@@ -64,27 +66,35 @@ export default {
         refresh() {
             location.reload();
         },
-        handleScroll(e: WheelEvent | TouchEvent) {
-            e.preventDefault();
-
-            if (e instanceof WheelEvent) {
+        handleScroll() {
+            window.addEventListener("wheel", (e: WheelEvent) => {
                 if (e.deltaY < 0) {
                     (this.$refs.container as HTMLElement).style.marginTop = '0px';
                 }
                 else if (e.deltaY > 0) {
                     (this.$refs.container as HTMLElement).style.marginTop = '-50px';
+    
+                }
+            });
 
-                }
-            } else if (e instanceof TouchEvent) {
-                if (e.touches[0].clientY < 0) {
+        },
+        handleSwipe() {
+            let touchstartY = 0;
+            let touchendY = 0;
+
+            window.addEventListener('touchstart', e => {
+                touchstartY = e.changedTouches[0].screenY
+            })
+
+            window.addEventListener('touchend', e => {
+                touchendY = e.changedTouches[0].screenY
+                if (touchendY < touchstartY) {
                     (this.$refs.container as HTMLElement).style.marginTop = '-50px';
-                    console.log('up');
                 }
-                else if (e.touches[0].clientY > 0) {
+                if (touchendY > touchstartY) {
                     (this.$refs.container as HTMLElement).style.marginTop = '0px';
-                    console.log('down');
                 }
-            }
+            })
         }
     }
 }
