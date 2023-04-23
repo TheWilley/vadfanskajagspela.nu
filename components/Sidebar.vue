@@ -43,10 +43,10 @@ export default {
     handleScroll() {
       window.addEventListener("wheel", (e: WheelEvent) => {
         if (e.deltaY < 0) {
-          (this.$refs.header as HTMLElement).style.marginTop = '0px';
+          (this.$refs.header as HTMLElement).style.marginTop = '-120px';
         }
         else if (e.deltaY > 0) {
-          (this.$refs.header as HTMLElement).style.marginTop = '-120px';
+          (this.$refs.header as HTMLElement).style.marginTop = '0px';
         }
       });
 
