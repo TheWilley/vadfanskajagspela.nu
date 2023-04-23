@@ -6,8 +6,9 @@
     </p>
 
     <select class="form-select p-2" aria-label="Default select example">
-      <option>Alla Spel</option>
-      <option value="1">Gratis Spel</option>
+      <option value="0">Alla Spel</option>
+      <option value="1">Betalda Spel</option>
+      <option value="2">Gratis Spel</option>
     </select>
   </header>
 </template>
@@ -71,11 +72,18 @@ export default {
     handleSelect() {
       let select = document.querySelector('.form-select') as HTMLSelectElement
       if (window.location.href.includes('free')) {
+        select.value = '2'
+      } else if (window.location.href.includes('paid')) {
         select.value = '1'
+      } else {
+        select.value = '0'
       }
+      
       select.addEventListener('change', e => {
         const target = (e.target) as HTMLSelectElement
         if (target.value === '1') {
+          window.location.href = '/filter/paid'
+        } else if(target.value === '2') {
           window.location.href = '/filter/free'
         } else {
           window.location.href = '/'

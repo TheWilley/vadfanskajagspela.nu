@@ -47,10 +47,10 @@ export default {
         let list = this.handleFilter(games)
 
         // Get random game
-        const randomId = Math.floor(Math.random() * games.length);
-        const response = games[randomId];
-        this.game_title = response.name;
-        this.game_link = response.url;
+        const randomId = Math.floor(Math.random() * list.length);
+        const response = list[randomId];
+        this.game_title = String(response.name);
+        this.game_link = String(response.url);
 
         var img = new Image();
         img.src = response.image;
@@ -72,11 +72,13 @@ export default {
                 document.documentElement.style.setProperty('--vh', `${vh}px`);
             });
         },
-        handleFilter(games: { name: string; url: string; image: string; price: string;}[]) {
-            if (this.filter == 'all') {
-                return games
+        handleFilter(games: {"url": string, "name": string | number, "image": string, "price": string, "genres": string}[]) {
+            if (this.filter == 'paid') {
+                return games.filter(game => game.price == 'paid')
             } else if(this.filter == 'free') {
                 return games.filter(game => game.price == 'free')
+            } else {
+                return games
             }
         }
     }
