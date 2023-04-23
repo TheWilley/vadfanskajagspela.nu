@@ -6,9 +6,8 @@
                     class="text-info">vadfanskajaglagatillmiddag.nu</a>
             </p>
         </header>
-        <div class="row p-3 d-flex justify-content-center align-items-center" style="height:100vh; width: 100vw; margin: 0 auto">
-            <div id="overlay"></div>
-            <div class="col-12">
+        <div id="container__row" class="row p-3" style="width: 100vw; margin: 0 auto">
+            <div id="container__row__col" class="col-12">
                 <div id="container__loading" ref="container__loading" class="text-center">
                     <img src="../assets/images/loading.gif">
                 </div>
@@ -46,6 +45,7 @@ export default {
         // Handle scroll and swipe
         this.handleScroll()
         this.handleSwipe()
+        this.handlePortSize()
 
         // Get random game
         const randomId = Math.floor(Math.random() * games.length);
@@ -66,6 +66,12 @@ export default {
     methods: {
         refresh() {
             location.reload();
+        },
+        handlePortSize() {
+            window.addEventListener('resize', () => {
+                let vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
+            });
         },
         handleScroll() {
             window.addEventListener("wheel", (e: WheelEvent) => {
@@ -102,6 +108,9 @@ export default {
 </script>
 
 <style scoped lang="sass">
+:root 
+    --vh: 0px
+
 $red: #DC3131 
 @media screen and (max-width: 1300px) and (min-height: 400px)
     #container__interface__game-title 
@@ -125,17 +134,22 @@ $red: #DC3131
 #container
     transition: 0.2s cubic-bezier(0.25,0.80,1,1)
 
+#container__row
+    height: 100vh
+    height: calc(var(--vh, 1vh) * 100)
+    
+    #container__row__col
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+
 #container__loading
-    position: absolute
-    top: 0
-    left: 0
-    width: 100%
-    height: 100%
-    z-index: 1
-    display: flex
-    justify-content: center
-    align-items: center
     filter: blur(2px)
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
 
     img
         width: 100px
@@ -244,10 +258,8 @@ $red: #DC3131
 @keyframes hide-loading
     0% 
         opacity: 1
-        transform: scale(1)
     
     100% 
         opacity: 0
-        transform: scale(0)
 </style>
   
