@@ -1,1 +1,0 @@
-import{_ as o}from"./Main.0bd5a194.js";import{a as e,c as n,o as _}from"./entry.e25d7b4a.js";const c={data(){return{filter:String(this.$route.params.id)}}};function s(a,i,p,f,t,l){const r=o;return _(),n(r,{filter:t.filter},null,8,["filter"])}const d=e(c,[["render",s]]);export{d as default};
